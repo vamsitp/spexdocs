@@ -36,10 +36,6 @@ if (btns.length && sections.length > 0) {
     btns[5].addEventListener('click', function (event) {
         smoothScrollTo(sections[5], event);
     });
-
-    btns[6].addEventListener('click', function (event) {
-        smoothScrollTo(sections[6], event);
-    });
 }
 
 // setup typewriter effect in the terminal demo

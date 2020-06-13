@@ -44,7 +44,7 @@
                 <section class="js-section">
                     <br />
                     <p>
-                        SpecFlow (<i>Features</i>) <b>sync</b> to Azure DevOps (<i>TestCases</i>)
+                        <a href="https://specflow.org/">SpecFlow</a> (<i>Features</i>) <b>sync</b> to <a href="https://azure.microsoft.com/en-in/services/devops/test-plans/">Azure DevOps</a> (<i>TestCases</i>)
                     </p>
                     <img src="https://github.com/vamsitp/spexdocs/blob/master/docs/assets/images/Sync.png?raw=true" class="shadow" width="240">
                     <br />
@@ -52,19 +52,27 @@
                 </section>
                 <section class="js-section">
                     <h4 class="section__title">installation</h4>
+                    <h6 class="section__title">&#128640; <a href="https://marketplace.visualstudio.com/items?itemName=vktp.spex">Visual Studio Extension (VSIX)</a></h6><br />
+                    <ul style="margin-top:-20px">
+                        &#128073; Code-Editor (<i>Feature</i> file) &#8674; Context-menu<br />
+                        &#128073; Code-Editor (<i>Feature</i> file) &#8674; Selection &#8674; Context-menu<br />
+                        &#128073; Solution-Explorer &#8674; File / Folder &#8674; Context-menu<br />
+                        &#128073; Solution-Explorer &#8674; Project / Solution &#8674; Context-menu
+                    </ul>
+                    <h6 class="section__title">&#9780; dotnet tool (optional)</h6>
                     <pre>
-                        <code class="cmd">
-    # Install from nuget.org
-    dotnet tool install -g --no-cache --ignore-failed-sources spex --no-cache
+                    <code class="cmd">
+ # Install from nuget.org
+ dotnet tool install -g --no-cache --ignore-failed-sources spex
 
-    # Upgrade to latest version from nuget.org
-    dotnet tool update -g --no-cache --ignore-failed-sources spex
+ # Upgrade to latest version from nuget.org
+ dotnet tool update -g --no-cache --ignore-failed-sources spex
 
-    # Install a specific version from nuget.org
-    dotnet tool install -g --no-cache --ignore-failed-sources spex --version 1.0.x
+ # Install a specific version from nuget.org
+ dotnet tool install -g --no-cache --ignore-failed-sources spex --version 1.0.x
 
-    # Uninstall
-    dotnet tool uninstall -g spex
+ # Uninstall
+ dotnet tool uninstall -g spex
                         </code>
             </pre>
                     <blockquote>
@@ -76,11 +84,38 @@
                 <section class="js-section">
                     <h4 class="section__title">configuration</h4>
                     <pre>
-                    <code class="lang-json">
-    {
-
-    }
-              </code>
+                        <code class="lang-json">
+ {
+     "Account": "", // e.g. 'abc' in https://dev.azure.com/abc
+     "Project": "", // e.g. 'xyz' in https://dev.azure.com/abc/xyz
+     "PersonalAccessToken": "", // PAT (optional)
+     "AreaPath": "", // {area-path}
+     "IterationPath": "", // "{project}\\{iteration-path}"
+     "DefaultAssignedTo": "", // testlead@abc.com
+     "TestProjectPath": "", // ./MyProject.Bdd.Tests.csproj
+     "TestAssemblyPath": "", // bin\\debug\\MyProject.Bdd.Tests.dll
+     "FeatureFilters": [
+     "Features"
+     // , "FeatureName1"
+     // , "path2/FeatureName2"
+     ],
+     "ScenarioFilters": [
+     // , "ScenarioName1"
+     // , "ScenarioName2"
+     ],
+     "AttachmentTags": [
+     "@attach"
+     //, @input
+     ],
+     "AttachmentsPath": "TestData",
+     "AdditionalFields": [
+     // "customField1=defaultValue1"
+     // , "customField2=defaultValue2"
+     ],
+     "TreatBddThenAsVstsExpectedResult": false,
+     "QuiteMode": false
+ }
+                        </code>
             </pre>
                     <h5>details</h5>
                     <div class="container table-responsive" style="margin-left:-1em;padding-right:0em;">
@@ -95,55 +130,202 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>Account</td>
+                                    <td><code>string</code></td>
+                                    <td>Azure DevOps Org account name (https://dev.azure.com/{org})</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Project</td>
+                                    <td><code>string</code></td>
+                                    <td>Azure DevOps Project under the Org (https://dev.azure.com/{org}/{project})</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>PersonalAccessToken</td>
+                                    <td><code>string</code></td>
+                                    <td>Personal Access Token (PAT) (https://dev.azure.com/{org}/_usersSettings/tokens)</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>AreaPath</td>
+                                    <td><code>string</code></td>
+                                    <td><a href="https://docs.microsoft.com/en-us/azure/devops/organizations/settings/set-area-paths">Area Path</a> to be used when creating the Test-cases in AzDevOps</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>IterationPath</td>
+                                    <td><code>string</code></td>
+                                    <td><a href="https://docs.microsoft.com/en-us/azure/devops/organizations/settings/set-iteration-paths-sprints">Iteration Path</a> to be used when creating the Test-cases in AzDevOps</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>DefaultAssignedTo</td>
+                                    <td><code>string</code></td>
+                                    <td>The default <a href="https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/work-item-field?view=azure-devops#alphabetical-index">Assigned To</a> field to be used when creating the Test-cases in AzDevOps (can we overridden with <code>@owner</code> <i>tag</i> at individual <code>Feature</code>/<code>Scenario</code> level)</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>TestProjectPath</td>
+                                    <td><code>string</code></td>
+                                    <td>Relative path to the <code>csproj</code> file (w.r.t. the specified input folder)</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>TestAssemblyPath</td>
+                                    <td><code>string</code></td>
+                                    <td>Relative path to the <code>dll</code> file (w.r.t. the specified input folder)</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>FeatureFilters</td>
+                                    <td><code>string[]</code></td>
+                                    <td>Path or name of the <code>Features</code> to filter out on (only <code>Features</code> matching this condition will be <i>synced</i>)</td>
+                                    <td><code>Features</code></td>
+                                </tr>
+                                <tr>
+                                    <td>ScenarioFilters</td>
+                                    <td><code>string[]</code></td>
+                                    <td>Name of the <code>Scenarios</code> to filter out on (only <code>Scenarios</code> matching this condition will be <i>synced</i>)</td>
+                                    <td><code></code></td>
+                                </tr>
+                                <tr>
+                                    <td>AttachmentTags</td>
+                                    <td><code>string[]</code></td>
+                                    <td>List of <i>tags</i> to be considered for Test-case <code>attachments</code> (e.g. <code>@attach=someFile.txt</code></td>
+                                    <td><code>@attach</code></td>
+                                </tr>
+                                <tr>
+                                    <td>AttachmentsPath</td>
+                                    <td><code>string</code></td>
+                                    <td>Path to the <i>root</i> attachments folder (e.g. <code>@attach=someFile.txt</code> will search for the file under <code>TestData/Attach</code> or <code>TestData</code></td>
+                                    <td><code>TestData</code></td>
+                                </tr>
+                                <tr>
+                                    <td>AdditionalFields</td>
+                                    <td><code>string[]</code></td>
+                                    <td>Additional (custom) <i>fields</i> to be populated when creating AzDevOps Test-cases</td>
+                                    <td><code></code></td>
+                                </tr>
+                                <tr>
+                                    <td>TreatBddThenAsVstsExpectedResult</td>
+                                    <td><code>bool</code></td>
+                                    <td>Populates BDD <code>Thens</code> as <code>ExpectedResults</code> in AzDevOps</td>
+                                    <td><code>false</code></td>
+                                </tr>
+                                <tr>
                                     <td>QuiteMode</td>
                                     <td><code>bool</code></td>
-                                    <td>Just run (based on the information specified in the <i>Settings</i> file) and exit!<br />Used in case of DevOps/CI pipelines</td>
+                                    <td>Just run (based on the information specified in the <i>Settings</i> file) and exit!</td>
                                     <td><code>false</code></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                     <br />
-                    <hr />
                 </section>
                 <section class="js-section">
                     <h4 class="section__title">inputs</h4>
+                    <p>
+                        If no input (directory-path) is specified in the <i>args</i>, Spex assumes the <i>current-dir</i> as the input.
+                    </p>
+                    <p>
+                        When run from <a href="https://marketplace.visualstudio.com/items?itemName=vktp.spex">Visual Studio</a>, additional <i>args</i> related to Feature-filters (<code>f:</code>) and Scenario-filters (<code>s:</code>) are passed to <code>Spex</code> <i>tool</i>, overriding the filters provided in <code>Spex.json</code>.
+                    </p>
                     <hr />
                 </section>
                 <section class="js-section">
                     <h4 class="section__title">outputs</h4>
+                    <p>
+                        Results are saved under <code>Spex</code> folder under the specified input path.<br />
+                        You can <code>.gitignore</code> the generated <code>Spex</code> folder.
+                    </p>
                     <hr />
                 </section>
                 <section class="js-section">
                     <h4 class="section__title">usage</h4>
-                    <pre style="margin-top:10px"><code> spex [MyProject.Spex.Settings.json]</code></pre><br />
+                    <pre style="margin-top:10px"><code> spex [bdd-test-project-folder-path]</code></pre><br />
                     <blockquote>
                         <ul>
                             <li>
-                                If the specified <i>path</i> or the <i>current-dir</i> contains a valid <i>Settings</i> file, the tool uses/creates the <code>Spex</code> folder under that path (for processing inputs/outputs);
-                                else, it falls back to the <code>Pefx</code> folder under <i>My Documents</i>
+                                The specified <i>path</i> should contain a valid <code>Spex.json</code> <i>settings</i> file;
                             </li>
                             <li>
-                                If no argument is supplied, <code>Spex.Settings.json</code> is used as input by default
+                                The tool creates a <code>Spex</code> folder under the specified path (for processing inputs/outputs);
                             </li>
                             <li>
-                                Set <i>QuiteMode</i> to <code>true</code> in the <i>Settings</i> file to run once and exit
+                                If no argument is supplied, <code>Spex.json</code> in the <i>current-dir</i> is used by default
                             </li>
+                            <!--<li>
+                Set <i>QuiteMode</i> to <code>true</code> in the <i>Settings</i> file to run once and exit
+            </li>-->
                         </ul>
                     </blockquote>
-                    <br />
                     <ul>
                         <li>Enter <code>s</code> to sync SpecFlow Features to AzDevOps TestCases</li>
                         <li>Enter <code>d</code> to demo/dry-run the AzDevOps sync</li>
                         <li>Enter <code>m</code> to generate AzDevOps TestCase-UserStory association matrix</li>
                         <li>Enter <code>r</code> to generate AzDevOps TestCases report</li>
                         <!--<li>Enter <code>u</code> to auto-upgrade @version for updated Scenarios</li>
-                          <li>Enter <code>v</code> to validate stale Steps in SpecFlow Features</li>-->
+          <li>Enter <code>v</code> to validate stale Steps in SpecFlow Features</li>-->
                         <li>Enter <code>c</code> to clear the console</li>
                         <li>Enter <code>q</code> to quit</li>
                         <li>Enter <code>+</code> to upgrade</li>
                         <li>Enter <code>?</code> to print this help</li>
                     </ul>
+                    <h6>supported <i>tags</i> on <code>Features</code> / <code>Scenarios</code></h6>
+                    <div class="container table-responsive" style="margin-left:-1em;padding-right:0em;">
+                        <table id="config" class="table table-sm table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>TAG</th>
+                                    <th>DESCRIPTION</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@testplan</td>
+                                    <td>Mapped to <code>Test Plan ID</code> in AzDevOps</td>
+                                </tr>
+                                <tr>
+                                    <td>@testsuite</td>
+                                    <td>Mapped to <code>Test Suite ID</code> in AzDevOps</td>
+                                </tr>
+                                <tr>
+                                    <td>@testcase</td>
+                                    <td>Mapped to <code>Test Case ID</code> in AzDevOps (auto-populated post <i>sync</i>)</td>
+                                </tr>
+                                <tr>
+                                    <td>@sharedstep</td>
+                                    <td>Mapped to <code>Shared Step ID</code> in AzDevOps (used in case of <code>Background</code>; auto-populated post <i>sync</i>)</td>
+                                </tr>
+                                <tr>
+                                    <td>@priority</td>
+                                    <td>Mapped to <code>Priority</code> field in AzDevOps</td>
+                                </tr>
+                                <tr>
+                                    <td>@bvt</td>
+                                    <td>Mapped to <code>Priority</code> field in AzDevOps with a value of <code>1</code> (same as setting <code>@priority=1</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td>@manual</td>
+                                    <td>Mapped to <code>Automated</code> field in AzDevOps<br />e.g. <code>@manual=planned</code> or <code>@manual=not_automated</code> [same as empty/default <code>@manual</code>]) (<code>spaces</code> to be replaced with <code>-</code> [hyphen] in the <i>reason/value</i>)</td>
+                                </tr>
+                                <tr>
+                                    <td>@owner</td>
+                                    <td>Mapped to <code>Assigned To</code> field in AzDevOps (overrides the <code>DefaultAssignedTo</code> value in <code>Spex.json</code>)</td>
+                                </tr>
+                                <tr>
+                                    <td>@version</td>
+                                    <td>Identifies if the <code>Feature</code>/<code>Scenario</code> needs to be <i>re-synced</i> to AzDevOps (if the tag value is greater than the one in AzDevOps)</td>
+                                </tr>
+                                <tr>
+                                    <td>@ignore</td>
+                                    <td><code>Features</code>/<code>Scenarios</code> marked with this are ignored during <i>sync</i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="hero__terminal">
                         <pre>
                             <!-- Place your demo code here -->
