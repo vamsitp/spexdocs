@@ -18,7 +18,7 @@
     <body>
         <div class="doc__bg"></div>
         <nav class="header">
-            <h1 class="logo"><img src="assets/images/logo.png" width="72"> <span class="logo__thin">docs</span></h1>
+            <h1 class="logo"><img src="https://github.com/vamsitp/spexdocs/blob/master/docs/assets/images/Logo.png?raw=true" width="72"> <span class="logo__thin">docs</span></h1>
             <ul class="menu">
                 <div class="menu__item toggle"><span></span></div>
                 <li class="menu__item">
@@ -46,7 +46,7 @@
                     <p>
                         SpecFlow (<i>Features</i>) <b>sync</b> to Azure DevOps (<i>TestCases</i>)
                     </p>
-                    <img src="https://raw.githubusercontent.com/vamsitp/spex/master/docs/assets/images/Screenshot.png" class="responsive shadow">
+                    <img src="https://github.com/vamsitp/spexdocs/blob/master/docs/assets/images/Sync.png?raw=true" class="shadow" width="240">
                     <br />
                     <hr />
                 </section>
@@ -54,17 +54,17 @@
                     <h4 class="section__title">installation</h4>
                     <pre>
                         <code class="cmd">
-                            # Install from nuget.org
-                            dotnet tool install -g --no-cache --ignore-failed-sources spex --no-cache
+    # Install from nuget.org
+    dotnet tool install -g --no-cache --ignore-failed-sources spex --no-cache
 
-                            # Upgrade to latest version from nuget.org
-                            dotnet tool update -g --no-cache --ignore-failed-sources spex
+    # Upgrade to latest version from nuget.org
+    dotnet tool update -g --no-cache --ignore-failed-sources spex
 
-                            # Install a specific version from nuget.org
-                            dotnet tool install -g --no-cache --ignore-failed-sources spex --version 1.0.x
+    # Install a specific version from nuget.org
+    dotnet tool install -g --no-cache --ignore-failed-sources spex --version 1.0.x
 
-                            # Uninstall
-                            dotnet tool uninstall -g spex
+    # Uninstall
+    dotnet tool uninstall -g spex
                         </code>
             </pre>
                     <blockquote>
@@ -77,9 +77,9 @@
                     <h4 class="section__title">configuration</h4>
                     <pre>
                     <code class="lang-json">
-     {
+    {
 
-     }
+    }
               </code>
             </pre>
                     <h5>details</h5>
@@ -133,14 +133,15 @@
                     </blockquote>
                     <br />
                     <ul>
-                        <li>Enter <code>r:path-to-bdd-test-project</code> to execute the sync to AzDevOps</li>
-                        <li>GenerateTestCaseUserStoryAssociationsMatrix</li>
-                        <li>GenerateTestCasesReport</li>
-                        <!--<li>UpgradeVersionForUpdatedScenarios</li>
-                          <li>ValidateStaleStepsInBddFeatures</li>-->
-                        <li>Enter <code>d:path-to-bdd-test-project</code> to demo/dry-run the sync to AzDevOps</li>
+                        <li>Enter <code>s</code> to sync SpecFlow Features to AzDevOps TestCases</li>
+                        <li>Enter <code>d</code> to demo/dry-run the AzDevOps sync</li>
+                        <li>Enter <code>m</code> to generate AzDevOps TestCase-UserStory association matrix</li>
+                        <li>Enter <code>r</code> to generate AzDevOps TestCases report</li>
+                        <!--<li>Enter <code>u</code> to auto-upgrade @version for updated Scenarios</li>
+                          <li>Enter <code>v</code> to validate stale Steps in SpecFlow Features</li>-->
                         <li>Enter <code>c</code> to clear the console</li>
                         <li>Enter <code>q</code> to quit</li>
+                        <li>Enter <code>+</code> to upgrade</li>
                         <li>Enter <code>?</code> to print this help</li>
                     </ul>
                     <div class="hero__terminal">

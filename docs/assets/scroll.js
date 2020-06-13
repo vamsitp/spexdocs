@@ -41,3 +41,34 @@ if (btns.length && sections.length > 0) {
         smoothScrollTo(sections[6], event);
     });
 }
+
+// setup typewriter effect in the terminal demo
+if (document.getElementsByClassName('demo').length > 0) {
+    var i = 0;
+    var txt = `
+
+    >> spex
+    Enter s to sync SpecFlow Features to AzDevOps TestCases
+    Enter d to demo/dry-run the AzDevOps sync
+    Enter m to generate AzDevOps TestCase-UserStory association matrix
+    Enter r to generate AzDevOps TestCases report
+    Enter c to clear the console
+    Enter q to quit
+    Enter + to upgrade
+    Enter ? to print this help
+            `;
+    var speed = 15;
+
+    function typeItOut() {
+        if (i < txt.length) {
+            document.getElementsByClassName('demo')[0].innerHTML += txt.charAt(i);
+            //// hljs.initHighlighting.called = false;
+            //// hljs.initHighlighting();
+            // hljs.highlightBlock(document.getElementsByClassName('demo')[0])
+            i++;
+            setTimeout(typeItOut, speed);
+        }
+    }
+
+    setTimeout(typeItOut, 1800);
+}
