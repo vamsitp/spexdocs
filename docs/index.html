@@ -1,0 +1,163 @@
+﻿<!doctype html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Spex documentation</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Maven+Pro:wght@400;500&family=Open+Sans:wght@400;600&family=Roboto+Slab&display=swap">
+        <link rel="stylesheet" href="https://vamsitp.github.io/assets/scribbler-global.css">
+        <link rel="stylesheet" href="https://vamsitp.github.io/assets/scribbler-doc.css">
+        <link rel="stylesheet" href="https://vamsitp.github.io/assets/ocean.css">
+        <link rel="author" href="humans.txt">
+    </head>
+
+    <body>
+        <div class="doc__bg"></div>
+        <nav class="header">
+            <h1 class="logo"><img src="assets/images/logo.png" width="72"> <span class="logo__thin">docs</span></h1>
+            <ul class="menu">
+                <div class="menu__item toggle"><span></span></div>
+                <li class="menu__item">
+                    <a href="https://github.com/vamsitp/spex" target="_blank" class="link link--dark">
+                        <i class="fa fa-github"></i> Github
+                    </a>
+                </li>
+                <li class="menu__item"><a href="" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
+            </ul>
+        </nav>
+        <div class="wrapper">
+            <aside class="doc__nav">
+                <ul>
+                    <li class="js-btn selected">home</li>
+                    <li class="js-btn">installation</li>
+                    <li class="js-btn">configuration</li>
+                    <li class="js-btn">inputs</li>
+                    <li class="js-btn">outputs</li>
+                    <li class="js-btn">usage</li>
+                </ul>
+            </aside>
+            <article class="doc__content">
+                <section class="js-section">
+                    <br />
+                    <p>
+                        SpecFlow (<i>Features</i>) <b>sync</b> to Azure DevOps (<i>TestCases</i>)
+                    </p>
+                    <img src="https://raw.githubusercontent.com/vamsitp/spex/master/docs/assets/images/Screenshot.png" class="responsive shadow">
+                    <br />
+                    <hr />
+                </section>
+                <section class="js-section">
+                    <h4 class="section__title">installation</h4>
+                    <pre>
+                        <code class="cmd">
+                            # Install from nuget.org
+                            dotnet tool install -g --no-cache --ignore-failed-sources spex --no-cache
+
+                            # Upgrade to latest version from nuget.org
+                            dotnet tool update -g --no-cache --ignore-failed-sources spex
+
+                            # Install a specific version from nuget.org
+                            dotnet tool install -g --no-cache --ignore-failed-sources spex --version 1.0.x
+
+                            # Uninstall
+                            dotnet tool uninstall -g spex
+                        </code>
+            </pre>
+                    <blockquote>
+                        <p>If you don't have .NET Core 3.1 installed, <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1"><u>download and install</u></a> it.</p>
+                        <p>If the <i>Tool</i> is not accessible post installation, add <code>%USERPROFILE%\.dotnet\tools</code> to the PATH env-var.</p>
+                    </blockquote>
+                    <hr />
+                </section>
+                <section class="js-section">
+                    <h4 class="section__title">configuration</h4>
+                    <pre>
+                    <code class="lang-json">
+     {
+
+     }
+              </code>
+            </pre>
+                    <h5>details</h5>
+                    <div class="container table-responsive" style="margin-left:-1em;padding-right:0em;">
+                        <table id="config" class="table table-sm table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>KEY</th>
+                                    <th>TYPE</th>
+                                    <th>VALUE</th>
+                                    <th>DEFAULT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>QuiteMode</td>
+                                    <td><code>bool</code></td>
+                                    <td>Just run (based on the information specified in the <i>Settings</i> file) and exit!<br />Used in case of DevOps/CI pipelines</td>
+                                    <td><code>false</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br />
+                    <hr />
+                </section>
+                <section class="js-section">
+                    <h4 class="section__title">inputs</h4>
+                    <hr />
+                </section>
+                <section class="js-section">
+                    <h4 class="section__title">outputs</h4>
+                    <hr />
+                </section>
+                <section class="js-section">
+                    <h4 class="section__title">usage</h4>
+                    <pre style="margin-top:10px"><code> spex [MyProject.Spex.Settings.json]</code></pre><br />
+                    <blockquote>
+                        <ul>
+                            <li>
+                                If the specified <i>path</i> or the <i>current-dir</i> contains a valid <i>Settings</i> file, the tool uses/creates the <code>Spex</code> folder under that path (for processing inputs/outputs);
+                                else, it falls back to the <code>Pefx</code> folder under <i>My Documents</i>
+                            </li>
+                            <li>
+                                If no argument is supplied, <code>Spex.Settings.json</code> is used as input by default
+                            </li>
+                            <li>
+                                Set <i>QuiteMode</i> to <code>true</code> in the <i>Settings</i> file to run once and exit
+                            </li>
+                        </ul>
+                    </blockquote>
+                    <br />
+                    <ul>
+                        <li>Enter <code>r:path-to-bdd-test-project</code> to execute the sync to AzDevOps</li>
+                        <li>GenerateTestCaseUserStoryAssociationsMatrix</li>
+                        <li>GenerateTestCasesReport</li>
+                        <!--<li>UpgradeVersionForUpdatedScenarios</li>
+                          <li>ValidateStaleStepsInBddFeatures</li>-->
+                        <li>Enter <code>d:path-to-bdd-test-project</code> to demo/dry-run the sync to AzDevOps</li>
+                        <li>Enter <code>c</code> to clear the console</li>
+                        <li>Enter <code>q</code> to quit</li>
+                        <li>Enter <code>?</code> to print this help</li>
+                    </ul>
+                    <div class="hero__terminal">
+                        <pre>
+                            <!-- Place your demo code here -->
+                        <code class="shell-session demo cmd" style="background:rgb(35, 35, 35)">dotnet tool install -g spex</code>
+                        </pre>
+                    </div>
+                    <hr />
+                </section>
+            </article>
+        </div>
+
+        <script src="https://vamsitp.github.io/assets/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script src="https://vamsitp.github.io/assets/scribbler.js"></script>
+        <script src="assets/scroll.js"></script>
+    </body>
+
+</html>
