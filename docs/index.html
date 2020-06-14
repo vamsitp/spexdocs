@@ -44,7 +44,7 @@
                 <section class="js-section">
                     <br />
                     <p>
-                        <a href="https://specflow.org/">SpecFlow</a> (<i>Features</i>) <b>sync</b> to <a href="https://azure.microsoft.com/en-in/services/devops/test-plans/">Azure DevOps</a> (<i>TestCases</i>)
+                        <a href="https://specflow.org/" target="_blank">SpecFlow</a> (<i>Features</i>) <b>sync</b> to <a href="https://azure.microsoft.com/en-in/services/devops/test-plans/" target="_blank">Azure DevOps</a> (<i>TestCases</i>)
                     </p>
                     <img src="https://github.com/vamsitp/spexdocs/blob/master/docs/assets/images/Sync.png?raw=true" class="shadow" width="240">
                     <br />
@@ -52,14 +52,14 @@
                 </section>
                 <section class="js-section">
                     <h4 class="section__title">installation</h4>
-                    <h6 class="section__title">&#128640; <a href="https://marketplace.visualstudio.com/items?itemName=vktp.spex">Visual Studio Extension (VSIX)</a></h6><br />
-                    <ul style="margin-top:-20px">
-                        &#128073; Code-Editor (<i>Feature</i> file) &#8674; Context-menu<br />
-                        &#128073; Code-Editor (<i>Feature</i> file) &#8674; Selection &#8674; Context-menu<br />
-                        &#128073; Solution-Explorer &#8674; File / Folder &#8674; Context-menu<br />
-                        &#128073; Solution-Explorer &#8674; Project / Solution &#8674; Context-menu
+                    <h6 class="section__title">&#128640; <a href="https://marketplace.visualstudio.com/items?itemName=vktp.spex" target="_blank">Visual Studio Extension (VSIX)</a></h6><br />
+                    <ul style="margin-top:-20px;margin-left:-15px">
+                        &#128304; Code-Editor (<i>Feature</i> file) &#8674; Context-menu &#128073; <code>Ctrl Alt Enter</code><br />
+                        &#128304; Code-Editor (<i>Feature</i> file) &#8674; Selection &#8674; Context-menu &#128073; <code>Ctrl Alt Enter</code><br />
+                        &#128304; Solution-Explorer &#8674; File / Folder &#8674; Context-menu &#128073; <code>Ctrl Shift Space</code><br />
+                        &#128304; Solution-Explorer &#8674; Project / Solution &#8674; Context-menu &#128073; <code>Ctrl Shift Space</code>
                     </ul>
-                    <h6 class="section__title">&#9780; dotnet tool (optional)</h6>
+                    <h6 class="section__title">&#9780; dotnet tool (auto-installed with <a href="https://marketplace.visualstudio.com/items?itemName=vktp.spex" target="_blank">VSIX</a>)</h6>
                     <pre>
                     <code class="cmd">
  # Install from nuget.org
@@ -76,17 +76,18 @@
                         </code>
             </pre>
                     <blockquote>
-                        <p>If you don't have .NET Core 3.1 installed, <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1"><u>download and install</u></a> it.</p>
+                        <p>If you don't have .NET Core 3.1 installed, <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1" target="_blank"><u>download and install</u></a> it.</p>
                         <p>If the <i>Tool</i> is not accessible post installation, add <code>%USERPROFILE%\.dotnet\tools</code> to the PATH env-var.</p>
                     </blockquote>
                     <hr />
                 </section>
                 <section class="js-section">
                     <h4 class="section__title">configuration</h4>
+                    <h6>Spex.json (preferred)</h6>
                     <pre>
-                        <code class="lang-json">
+                    <code class="lang-json">
  {
-     "Account": "", // e.g. 'abc' in https://dev.azure.com/abc
+     "Account": "", // Org - e.g. 'abc' in https://dev.azure.com/abc
      "Project": "", // e.g. 'xyz' in https://dev.azure.com/abc/xyz
      "PersonalAccessToken": "", // PAT (optional)
      "AreaPath": "", // {area-path}
@@ -96,11 +97,11 @@
      "TestAssemblyPath": "", // bin\\debug\\MyProject.Bdd.Tests.dll
      "FeatureFilters": [
      "Features"
-     // , "FeatureName1"
+     // "FeatureName1"
      // , "path2/FeatureName2"
      ],
      "ScenarioFilters": [
-     // , "ScenarioName1"
+     // "ScenarioName1"
      // , "ScenarioName2"
      ],
      "AttachmentTags": [
@@ -112,10 +113,36 @@
      // "customField1=defaultValue1"
      // , "customField2=defaultValue2"
      ],
-     "TreatBddThenAsVstsExpectedResult": false,
-     "QuiteMode": false
+     "SyncBddThenAsExpectedResult": false,
+     "QuiteMode": "" // "s", "m", "r"
  }
                         </code>
+            </pre>
+            <h6>App.config (alternative)</h6>
+            <pre>
+                <code class="lang-xml">
+ &lt;Spex&gt;
+     &lt;add key="Account" value="{org}" /&gt;
+     &lt;add key="Project" value="{project}" /&gt;
+     &lt;add key="PersonalAccessToken" value="{pat}" /&gt;
+
+     &lt;add key="AreaPath" value="{areaPath}" /&gt;
+     &lt;add key="IterationPath" value="{IterationPath}" /&gt;
+     &lt;add key="DefaultAssignedTo" value="{default-user-email}" /&gt;
+
+     &lt;add key="TestProjectPath" value=".\MyProject.Bdd.Tests.csproj" /&gt;
+     &lt;add key="TestAssemblyPath" value=".\bin\debug\MyProject.Bdd.Tests.dll" /&gt;
+     &lt;add key="FeatureFilters" value="" /&gt; &lt;!-- Comma separated filters (e.g. Features,FeatureName1,path2/FeatureName2) --&gt;
+     &lt;add key="ScenarioFilters" value="" /&gt; &lt;!-- Comma separated filters (e.g. ScenarioName1,ScenarioName2) --&gt;
+
+     &lt;add key="AttachmentTags" value="@attach" /&gt; &lt;!-- Comma separated tags (e.g. @attach,@input) --&gt;
+     &lt;add key="AttachmentsPath" value="TestData" /&gt;
+     &lt;add key="AdditionalFields" value="" /&gt;&lt;!-- Comma separated fields (e.g. customField1=defaultValue1,customField2=defaultValue2) --&gt;
+     &lt;add key="SyncBddThenAsExpectedResult" value="false" /&gt;
+
+     &lt;add key="QuiteMode" value="" /&gt;
+ &lt;/Spex&gt;
+                </code>
             </pre>
                     <h5>details</h5>
                     <div class="container table-responsive" style="margin-left:-1em;padding-right:0em;">
@@ -132,13 +159,13 @@
                                 <tr>
                                     <td>Account</td>
                                     <td><code>string</code></td>
-                                    <td>Azure DevOps Org account name (https://dev.azure.com/{org})</td>
+                                    <td>Azure DevOps Org Account name (https://dev.azure.com/{org})</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Project</td>
                                     <td><code>string</code></td>
-                                    <td>Azure DevOps Project under the Org (https://dev.azure.com/{org}/{project})</td>
+                                    <td>Azure DevOps Project under the Org (https://dev.azure.com/org/{project})</td>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -150,19 +177,19 @@
                                 <tr>
                                     <td>AreaPath</td>
                                     <td><code>string</code></td>
-                                    <td><a href="https://docs.microsoft.com/en-us/azure/devops/organizations/settings/set-area-paths">Area Path</a> to be used when creating the Test-cases in AzDevOps</td>
+                                    <td><a href="https://docs.microsoft.com/en-us/azure/devops/organizations/settings/set-area-paths" target="_blank">Area Path</a> to be used when creating the Test-cases in AzDevOps</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>IterationPath</td>
                                     <td><code>string</code></td>
-                                    <td><a href="https://docs.microsoft.com/en-us/azure/devops/organizations/settings/set-iteration-paths-sprints">Iteration Path</a> to be used when creating the Test-cases in AzDevOps</td>
+                                    <td><a href="https://docs.microsoft.com/en-us/azure/devops/organizations/settings/set-iteration-paths-sprints" target="_blank">Iteration Path</a> to be used when creating the Test-cases in AzDevOps</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>DefaultAssignedTo</td>
                                     <td><code>string</code></td>
-                                    <td>The default <a href="https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/work-item-field?view=azure-devops#alphabetical-index">Assigned To</a> field to be used when creating the Test-cases in AzDevOps (can we overridden with <code>@owner</code> <i>tag</i> at individual <code>Feature</code>/<code>Scenario</code> level)</td>
+                                    <td>The default <a href="https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/work-item-field?view=azure-devops#alphabetical-index" target="_blank">Assigned To</a> field to be used when creating the Test-cases in AzDevOps (can we overridden with <code>@owner</code> <i>tag</i> at individual <code>Feature</code>/<code>Scenario</code> level)</td>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -192,32 +219,32 @@
                                 <tr>
                                     <td>AttachmentTags</td>
                                     <td><code>string[]</code></td>
-                                    <td>List of <i>tags</i> to be considered for Test-case <code>attachments</code> (e.g. <code>@attach=someFile.txt</code></td>
+                                    <td>List of <i>tags</i> to be considered for Test-case <code>attachments</code><br />e.g. <code>@attach=someFile.txt</code></td>
                                     <td><code>@attach</code></td>
                                 </tr>
                                 <tr>
                                     <td>AttachmentsPath</td>
                                     <td><code>string</code></td>
-                                    <td>Path to the <i>root</i> attachments folder (e.g. <code>@attach=someFile.txt</code> will search for the file under <code>TestData/Attach</code> or <code>TestData</code></td>
+                                    <td>Path to the <i>root</i> attachments folder<br />e.g. For <code>@attach=someFile.txt</code> <i>tag</i>, Spex will search for <code>someFile.txt</code> under <code>TestData/Attach</code> or <code>TestData</code> in the output folder</td>
                                     <td><code>TestData</code></td>
                                 </tr>
                                 <tr>
                                     <td>AdditionalFields</td>
                                     <td><code>string[]</code></td>
-                                    <td>Additional (custom) <i>fields</i> to be populated when creating AzDevOps Test-cases</td>
+                                    <td>Additional (custom) Work-item <i>fields</i> to be populated when creating AzDevOps Test-cases</td>
                                     <td><code></code></td>
                                 </tr>
                                 <tr>
-                                    <td>TreatBddThenAsVstsExpectedResult</td>
+                                    <td>SyncBddThenAsExpectedResult</td>
                                     <td><code>bool</code></td>
-                                    <td>Populates BDD <code>Thens</code> as <code>ExpectedResults</code> in AzDevOps</td>
+                                    <td>Populates BDD <code>Thens</code> in <code>ExpectedResults</code> column in AzDevOps Test-cases</td>
                                     <td><code>false</code></td>
                                 </tr>
                                 <tr>
                                     <td>QuiteMode</td>
-                                    <td><code>bool</code></td>
-                                    <td>Just run (based on the information specified in the <i>Settings</i> file) and exit!</td>
-                                    <td><code>false</code></td>
+                                    <td><code>string</code></td>
+                                    <td>Just run (based on the information specified in the <i>Settings</i> file) and exit!<br />For valid values (<code>"s"</code>/<code>"m"</code>/<code>"r"</code>), see <i>usage</i> section below</td>
+                                    <td><code></code></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -227,10 +254,10 @@
                 <section class="js-section">
                     <h4 class="section__title">inputs</h4>
                     <p>
-                        If no input (directory-path) is specified in the <i>args</i>, Spex assumes the <i>current-dir</i> as the input.
+                        If no input (directory-path) is specified in the <i>args</i>, Spex assumes the <i>current-dir</i> as input.
                     </p>
                     <p>
-                        When run from <a href="https://marketplace.visualstudio.com/items?itemName=vktp.spex">Visual Studio</a>, additional <i>args</i> related to Feature-filters (<code>f:</code>) and Scenario-filters (<code>s:</code>) are passed to <code>Spex</code> <i>tool</i>, overriding the filters provided in <code>Spex.json</code>.
+                        When run from <a href="https://marketplace.visualstudio.com/items?itemName=vktp.spex" target="_blank">Visual Studio</a>, additional <i>args</i> related to Feature-filters (<code>f:</code>) and Scenario-filters (<code>s:</code>) are passed to <code>Spex</code> <i>tool</i>, overriding the filters provided in <code>Spex.json</code>.
                     </p>
                     <hr />
                 </section>
@@ -248,17 +275,17 @@
                     <blockquote>
                         <ul>
                             <li>
-                                The specified <i>path</i> should contain a valid <code>Spex.json</code> <i>settings</i> file;
+                                The specified <i>path</i> should contain a valid <code>Spex.json</code> <i>settings</i> file
                             </li>
                             <li>
-                                The tool creates a <code>Spex</code> folder under the specified path (for processing inputs/outputs);
+                                The tool creates a <code>Spex</code> folder under the specified path (for processing inputs/outputs)
                             </li>
                             <li>
                                 If no argument is supplied, <code>Spex.json</code> in the <i>current-dir</i> is used by default
                             </li>
-                            <!--<li>
-                Set <i>QuiteMode</i> to <code>true</code> in the <i>Settings</i> file to run once and exit
-            </li>-->
+                            <li>
+                                Set <i>QuiteMode</i> to <code>"s"</code>/<code>"m"</code>/<code>"r"</code> in the <i>Settings</i> file to run once and exit
+                            </li>
                         </ul>
                     </blockquote>
                     <ul>
@@ -273,7 +300,7 @@
                         <li>Enter <code>+</code> to upgrade</li>
                         <li>Enter <code>?</code> to print this help</li>
                     </ul>
-                    <h6>supported <i>tags</i> on <code>Features</code> / <code>Scenarios</code></h6>
+                    <h5>supported <i>tags</i> on <code>Features</code> / <code>Scenarios</code></h5>
                     <div class="container table-responsive" style="margin-left:-1em;padding-right:0em;">
                         <table id="config" class="table table-sm table-hover">
                             <thead class="thead-dark">
@@ -285,19 +312,19 @@
                             <tbody>
                                 <tr>
                                     <td>@testplan</td>
-                                    <td>Mapped to <code>Test Plan ID</code> in AzDevOps</td>
+                                    <td>Mapped to <code>Test-Plan ID</code> in AzDevOps</td>
                                 </tr>
                                 <tr>
                                     <td>@testsuite</td>
-                                    <td>Mapped to <code>Test Suite ID</code> in AzDevOps</td>
+                                    <td>Mapped to <code>Test-Suite ID</code> in AzDevOps</td>
                                 </tr>
                                 <tr>
                                     <td>@testcase</td>
-                                    <td>Mapped to <code>Test Case ID</code> in AzDevOps (auto-populated post <i>sync</i>)</td>
+                                    <td>Mapped to <code>Test-Case ID</code> in AzDevOps (auto-populated post <i>sync</i>)</td>
                                 </tr>
                                 <tr>
                                     <td>@sharedstep</td>
-                                    <td>Mapped to <code>Shared Step ID</code> in AzDevOps (used in case of <code>Background</code>; auto-populated post <i>sync</i>)</td>
+                                    <td>Mapped to <code>Shared-Step ID</code> in AzDevOps (used in case of <code>Background</code>; auto-populated post <i>sync</i>)</td>
                                 </tr>
                                 <tr>
                                     <td>@priority</td>

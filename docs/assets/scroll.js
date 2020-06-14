@@ -44,6 +44,11 @@ if (document.getElementsByClassName('demo').length > 0) {
     var txt = `
 
     >> spex
+       ____   ___    ____   _  __
+      / __/  / _ \\  / __/  | |/_/
+     _\\ \\   / ___/ / _/   _>  <
+    /___/  /_/    /___/  /_/|_|
+
     Enter s to sync SpecFlow Features to AzDevOps TestCases
     Enter d to demo/dry-run the AzDevOps sync
     Enter m to generate AzDevOps TestCase-UserStory association matrix
