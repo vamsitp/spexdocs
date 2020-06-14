@@ -171,7 +171,7 @@
                                 <tr>
                                     <td>PersonalAccessToken</td>
                                     <td><code>string</code></td>
-                                    <td>Personal Access Token (PAT) (https://dev.azure.com/{org}/_usersSettings/tokens)</td>
+                                    <td>[Optional] Personal Access Token (PAT) (https://dev.azure.com/{org}/_usersSettings/tokens)<br />If empty, a prompt will appear for authentication</td>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -207,43 +207,43 @@
                                 <tr>
                                     <td>FeatureFilters</td>
                                     <td><code>string[]</code></td>
-                                    <td>Path or name of the <code>Features</code> to filter out on (only <code>Features</code> matching this condition will be <i>synced</i>)</td>
+                                    <td>[Optional] Path or name of the <code>Features</code> to filter out on (only <code>Features</code> matching this condition will be <i>synced</i>)</td>
                                     <td><code>Features</code></td>
                                 </tr>
                                 <tr>
                                     <td>ScenarioFilters</td>
                                     <td><code>string[]</code></td>
-                                    <td>Name of the <code>Scenarios</code> to filter out on (only <code>Scenarios</code> matching this condition will be <i>synced</i>)</td>
+                                    <td>[Optional] Name of the <code>Scenarios</code> to filter out on (only <code>Scenarios</code> matching this condition will be <i>synced</i>)</td>
                                     <td><code></code></td>
                                 </tr>
                                 <tr>
                                     <td>AttachmentTags</td>
                                     <td><code>string[]</code></td>
-                                    <td>List of <i>tags</i> to be considered for Test-case <code>attachments</code><br />e.g. <code>@attach=someFile.txt</code></td>
+                                    <td>[Optional] List of <i>tags</i> to be considered for Test-case <code>attachments</code><br />e.g. <code>@attach=someFile.txt</code></td>
                                     <td><code>@attach</code></td>
                                 </tr>
                                 <tr>
                                     <td>AttachmentsPath</td>
                                     <td><code>string</code></td>
-                                    <td>Path to the <i>root</i> attachments folder<br />e.g. For <code>@attach=someFile.txt</code> <i>tag</i>, Spex will search for <code>someFile.txt</code> under <code>TestData/Attach</code> or <code>TestData</code> in the output folder</td>
+                                    <td>[Optional] Path to the <i>root</i> attachments folder<br />e.g. For <code>@attach=someFile.txt</code> <i>tag</i>, Spex will search for <code>someFile.txt</code> under <code>TestData/Attach</code> or <code>TestData</code> in the output folder</td>
                                     <td><code>TestData</code></td>
                                 </tr>
                                 <tr>
                                     <td>AdditionalFields</td>
                                     <td><code>string[]</code></td>
-                                    <td>Additional (custom) Work-item <i>fields</i> to be populated when creating AzDevOps Test-cases</td>
+                                    <td>[Optional] Additional (custom) Work-item <i>fields</i> to be populated when creating AzDevOps Test-cases</td>
                                     <td><code></code></td>
                                 </tr>
                                 <tr>
                                     <td>SyncBddThenAsExpectedResult</td>
                                     <td><code>bool</code></td>
-                                    <td>Populates BDD <code>Thens</code> in <code>ExpectedResults</code> column in AzDevOps Test-cases</td>
+                                    <td>[Optional] Populates BDD <code>Thens</code> in <code>ExpectedResults</code> column in AzDevOps Test-cases</td>
                                     <td><code>false</code></td>
                                 </tr>
                                 <tr>
                                     <td>QuiteMode</td>
                                     <td><code>string</code></td>
-                                    <td>Just run (based on the information specified in the <i>Settings</i> file) and exit!<br />For valid values (<code>"s"</code>/<code>"m"</code>/<code>"r"</code>), see <i>usage</i> section below</td>
+                                    <td>[Optional] Just run (based on the information specified in the <i>Settings</i> file) and exit!<br />For valid values (<code>"s"</code>/<code>"m"</code>/<code>"r"</code>), see <i>usage</i> section below</td>
                                     <td><code></code></td>
                                 </tr>
                             </tbody>
@@ -336,7 +336,7 @@
                                 </tr>
                                 <tr>
                                     <td>@manual</td>
-                                    <td>Mapped to <code>Automated</code> field in AzDevOps<br />e.g. <code>@manual=planned</code> or <code>@manual=not_automated</code> [same as empty/default <code>@manual</code>]) (<code>spaces</code> to be replaced with <code>-</code> [hyphen] in the <i>reason/value</i>)</td>
+                                    <td>Mapped to <code>Automation-Status</code> field in AzDevOps<br />e.g. <code>@manual=planned</code> or <code>@manual=not_automated</code> [same as empty/default <code>@manual</code>]) (<code>spaces</code> to be replaced with <code>-</code> [hyphen] in the <i>reason/value</i>)</td>
                                 </tr>
                                 <tr>
                                     <td>@owner</td>
