@@ -93,8 +93,8 @@
      "AreaPath": "", // {area-path}
      "IterationPath": "", // "{project}\\{iteration-path}"
      "DefaultAssignedTo": "", // testlead@abc.com
-     "TestProjectPath": "", // ./MyProject.Bdd.Tests.csproj
-     "TestAssemblyPath": "", // bin\\debug\\MyProject.Bdd.Tests.dll
+     "TestProjectPath": "", // .\\MyProject.Bdd.Tests.csproj
+     "TestAssemblyPath": "", // .\\bin\\debug\\MyProject.Bdd.Tests.dll
      "FeatureFilters": [
      "Features"
      // "FeatureName1"
@@ -243,7 +243,7 @@
                                 <tr>
                                     <td>QuiteMode</td>
                                     <td><code>string</code></td>
-                                    <td>[Optional] Just run (based on the information specified in the <i>Settings</i> file) and exit!<br />For valid values (<code>"s"</code>/<code>"m"</code>/<code>"r"</code>), see <i>usage</i> section below</td>
+                                    <td>[Optional] Just run (based on the information specified in the <i>Settings</i> file) and exit!<br />For valid values (<code>"s"</code>/<code>"m"</code>/<code>"r"</code>), see <i>usage</i> section below<br />e.g. When run in DevOps/CI pipelines</td>
                                     <td><code></code></td>
                                 </tr>
                             </tbody>
@@ -273,19 +273,13 @@
                     <h4 class="section__title">usage</h4>
                     <pre style="margin-top:10px"><code> spex [bdd-test-project-folder-path]</code></pre><br />
                     <blockquote>
-                        <ul>
-                            <li>
-                                The specified <i>path</i> should contain a valid <code>Spex.json</code> <i>settings</i> file
-                            </li>
-                            <li>
-                                The tool creates a <code>Spex</code> folder under the specified path (for processing inputs/outputs)
-                            </li>
-                            <li>
-                                If no argument is supplied, <code>Spex.json</code> in the <i>current-dir</i> is used by default
-                            </li>
-                            <li>
-                                Set <i>QuiteMode</i> to <code>"s"</code>/<code>"m"</code>/<code>"r"</code> in the <i>Settings</i> file to run once and exit
-                            </li>
+                        <ul style="margin-left:-15px;padding-left:20px">
+                            &#128304; The specified <i>path</i> should contain a valid <code>Spex.json</code> <i>settings</i> file<br />
+                            &#128304; The tool creates a <code>Spex</code> folder under the specified path (for processing inputs/outputs)<br />
+                            &#128304; If no argument is supplied, <code>Spex.json</code> in the <i>current-dir</i> is used by default<br />
+                            &#128304; Any errors would be logged to <code>%LOCALAPPDATA%\Spex</code> folder (file: <code>Spex_&lt;datestamp&gt;.log</code>)<br />
+                            &#128304; Set <i>QuiteMode</i> to <code>s</code> / <code>m</code> / <code>r</code> in the <i>Settings</i> file to run once and exit (e.g. When run in DevOps/CI pipelines)<br />
+                            &#128073; You can test / give it a first-spin using <code><a href="https://azuredevopsdemogenerator.azurewebsites.net/" target="_blank">Azure DevOps Demo Generator</a></code>
                         </ul>
                     </blockquote>
                     <ul>
