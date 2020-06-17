@@ -43,20 +43,23 @@ if (document.getElementsByClassName('demo').length > 0) {
     var i = 0;
     var txt = `
 
-    >> spex
+    > spex
        ____   ___    ____   _  __
       / __/  / _ \\  / __/  | |/_/
      _\\ \\   / ___/ / _/   _>  <
     /___/  /_/    /___/  /_/|_|
 
     Enter s to sync SpecFlow Features to AzDevOps TestCases
-    Enter d to demo/dry-run the AzDevOps sync
+          r:false (to skip regenerating the doc-cache)
+          d:true (to demo/dry-run AzDevOps sync)
+          s:scenario-name-matches (scenario-filters)
+          f:feature-name-or-path-matches (feature-filters)
+
     Enter m to generate AzDevOps TestCase-UserStory association matrix
     Enter r to generate AzDevOps TestCases report
     Enter c to clear the console
     Enter q to quit
     Enter + to upgrade
-    Enter ? to print this help
             `;
     var speed = 15;
 

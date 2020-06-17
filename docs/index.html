@@ -244,7 +244,7 @@
                                 <tr>
                                     <td>ScenarioOutlineExamplesInline</td>
                                     <td><code>bool</code></td>
-                                    <td>[Optional] Populates Scenario-Outline <code>Examples</code> inline in the <code>Steps</code> (vs. <i>Parameters</i>)</td>
+                                    <td>[Optional] Populates Scenario-Outline <code>Examples</code> inline in the <code>Steps</code> (vs. <i><a href="https://docs.microsoft.com/en-us/azure/devops/test/repeat-test-with-different-data?view=azure-devops#add-parameters-to-a-test-case" target="_blank">Parameters</a></i>)</td>
                                     <td><code>false</code></td>
                                 </tr>
                                 <tr>
@@ -290,8 +290,7 @@
                         </ul>
                     </blockquote>
                     <ul>
-                        <li>Enter <code>s</code> to sync SpecFlow Features to AzDevOps TestCases</li>
-                        <li>Enter <code>d</code> to demo/dry-run the AzDevOps sync</li>
+                        <li>Enter <code>s</code> to sync SpecFlow Features to AzDevOps TestCases (with optional space-delimited suffixes)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-b</code> to build the test-project before running AzDevOps sync<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-r:false</code> to skip regenerating the doc-cache, say if the project-files haven't changed<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-d:true</code> to demo/dry-run AzDevOps sync<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-s:scenario-name-matches</code> comma-separated scenario-filters to override global setting/input<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-f:feature-name-or-path-matches</code> comma-separated feature-filters to override global setting/input</li>
                         <li>Enter <code>m</code> to generate AzDevOps TestCase-UserStory association matrix</li>
                         <li>Enter <code>r</code> to generate AzDevOps TestCases report</li>
                         <!--<li>Enter <code>u</code> to auto-upgrade @version for updated Scenarios</li>
@@ -299,7 +298,6 @@
                         <li>Enter <code>c</code> to clear the console</li>
                         <li>Enter <code>q</code> to quit</li>
                         <li>Enter <code>+</code> to upgrade</li>
-                        <li>Enter <code>?</code> to print this help</li>
                     </ul>
                     <h6>supported <i>tags</i> on <code>Features</code> / <code>Scenarios</code></h6>
                     <div class="container table-responsive" style="margin-left:-1em;padding-right:0em;">
@@ -349,7 +347,7 @@
                                 </tr>
                                 <tr>
                                     <td>@ignore</td>
-                                    <td><code>Features</code>/<code>Scenarios</code> marked with this are ignored during <i>sync</i></td>
+                                    <td><code>Features</code> / <code>Scenarios</code> marked with this are ignored during <i>sync</i></td>
                                 </tr>
                             </tbody>
                         </table>
