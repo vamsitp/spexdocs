@@ -113,7 +113,8 @@
      // "customField1=defaultValue1"
      // , "customField2=defaultValue2"
      ],
-     "SyncBddThenAsExpectedResult": false,
+     "BddThenAsExpectedResult": false,
+     "ScenarioOutlineExamplesInline": false,
      "QuiteMode": "" // "s", "m", "r"
  }
                         </code>
@@ -138,8 +139,8 @@
      &lt;add key="AttachmentTags" value="@attach" /&gt; &lt;!-- Comma separated tags (e.g. @attach,@input) --&gt;
      &lt;add key="AttachmentsPath" value="TestData" /&gt;
      &lt;add key="AdditionalFields" value="" /&gt;&lt;!-- Comma separated fields (e.g. customField1=defaultValue1,customField2=defaultValue2) --&gt;
-     &lt;add key="SyncBddThenAsExpectedResult" value="false" /&gt;
-
+     &lt;add key="BddThenAsExpectedResult" value="false" /&gt;
+     &lt;add key="ScenarioOutlineExamplesInline" value="false" /&gt;
      &lt;add key="QuiteMode" value="" /&gt;
  &lt;/Spex&gt;
                 </code>
@@ -235,9 +236,15 @@
                                     <td><code></code></td>
                                 </tr>
                                 <tr>
-                                    <td>SyncBddThenAsExpectedResult</td>
+                                    <td>BddThenAsExpectedResult</td>
                                     <td><code>bool</code></td>
                                     <td>[Optional] Populates BDD <code>Thens</code> in <code>ExpectedResults</code> column in AzDevOps Test-cases</td>
+                                    <td><code>false</code></td>
+                                </tr>
+                                <tr>
+                                    <td>ScenarioOutlineExamplesInline</td>
+                                    <td><code>bool</code></td>
+                                    <td>[Optional] Populates Scenario-Outline <code>Examples</code> inline in the <code>Steps</code> (vs. <i>Parameters</i>)</td>
                                     <td><code>false</code></td>
                                 </tr>
                                 <tr>
