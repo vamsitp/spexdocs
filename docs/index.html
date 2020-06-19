@@ -53,7 +53,7 @@
                 <section class="js-section">
                     <h4 class="section__title">installation</h4>
                     <h6 class="section__title">&#128640; <a href="https://marketplace.visualstudio.com/items?itemName=vktp.spex" target="_blank">Visual Studio Extension (VSIX)</a></h6><br />
-                    <ul style="margin-top:-20px;margin-left:-15px">
+                    <ul style="margin-top:-20px;margin-left:-15px;background-color:thistle">
                         &#128304; Code-Editor (<i>Feature</i> file) &#8674; Context-menu &#128073; <code>Ctrl Alt Enter</code><br />
                         &#128304; Code-Editor (<i>Feature</i> file) &#8674; Selection &#8674; Context-menu &#128073; <code>Ctrl Alt Enter</code><br />
                         &#128304; Solution-Explorer &#8674; File / Folder &#8674; Context-menu &#128073; <code>Ctrl Shift Space</code><br />
@@ -119,7 +119,7 @@
  }
                         </code>
             </pre>
-            <h6>App.config (alternative)</h6>
+            <h6>App.config (alternative approach that auto-generates Spex.json)</h6>
             <pre>
                 <code class="lang-xml">
  &lt;Spex&gt;
@@ -293,8 +293,8 @@
                         <li>Enter <code>s</code> to sync SpecFlow Features to AzDevOps TestCases (with optional space-delimited suffixes)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-b</code> to build the test-project before running AzDevOps sync<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-r:false</code> to skip regenerating the doc-cache, say if the project-files haven't changed<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-d:true</code> to demo/dry-run AzDevOps sync<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-s:scenario-name-matches</code> comma-separated scenario-filters to override global setting/input<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-f:feature-name-or-path-matches</code> comma-separated feature-filters to override global setting/input</li>
                         <li>Enter <code>m</code> to generate AzDevOps TestCase-UserStory association matrix</li>
                         <li>Enter <code>r</code> to generate AzDevOps TestCases report</li>
-                        <!--<li>Enter <code>u</code> to auto-upgrade @version for updated Scenarios</li>
-          <li>Enter <code>v</code> to validate stale Steps in SpecFlow Features</li>-->
+                        <li>Enter <code>u</code> to auto-upgrade @version for updated Scenarios</li>
+                        <!--<li>Enter <code>v</code> to validate stale Steps in SpecFlow Features</li>-->
                         <li>Enter <code>c</code> to clear the console</li>
                         <li>Enter <code>q</code> to quit</li>
                         <li>Enter <code>+</code> to upgrade</li>
