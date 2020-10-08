@@ -199,13 +199,13 @@
                                 <tr>
                                     <td>TestProjectPath</td>
                                     <td><code>string</code></td>
-                                    <td>.NET only: Relative path to the <code>csproj</code> file (w.r.t. the specified input folder)</td>
+                                    <td>[Optional / .NET only] Relative path to the <code>csproj</code> file (w.r.t. the specified input folder)</td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>TestAssemblyPath</td>
                                     <td><code>string</code></td>
-                                    <td>.NET only: Relative path to the <code>dll</code> file (w.r.t. the specified input folder)</td>
+                                    <td>[Optional / .NET only] Relative path to the <code>dll</code> file (w.r.t. the specified input folder)</td>
                                     <td></td>
                                 </tr>
                                 <tr>
@@ -303,6 +303,11 @@
                         <li>Enter <code>+</code> to upgrade</li>
                     </ul>
                     <h6>supported <i>tags</i> on <code>Features</code> / <code>Scenarios</code></h6>
+                    <blockquote>
+                        <ul style="margin-left:-15px;padding-left:20px">
+                            &#128073; Spaces (<code>' '</code>) in tag-values should be replaced with <code>'^'</code> (e.g. <code>@area</code> / <code>@iteration</code> below)
+                        </ul>
+                    </blockquote>
                     <div class="container table-responsive" style="margin-left:-1em;padding-right:0em;">
                         <table id="config" class="table table-sm table-hover">
                             <thead class="thead-dark">
@@ -314,23 +319,23 @@
                             <tbody>
                                 <tr>
                                     <td>@testplan</td>
-                                    <td>Mapped to <code>Test-Plan ID</code> in AzDevOps</td>
+                                    <td>Mapped to <code>Test-Plan ID</code> in AzDevOps<br />e.g. <code>@testplan=123</code></td>
                                 </tr>
                                 <tr>
                                     <td>@testsuite</td>
-                                    <td>Mapped to <code>Test-Suite ID</code> in AzDevOps</td>
+                                    <td>Mapped to <code>Test-Suite ID</code> in AzDevOps<br />e.g. <code>@testplan=456</code></td>
                                 </tr>
                                 <tr>
                                     <td>@testcase</td>
-                                    <td>Mapped to <code>Test-Case ID</code> in AzDevOps (auto-populated post <i>sync</i>)</td>
+                                    <td>Mapped to <code>Test-Case ID</code> in AzDevOps (auto-populated post <i>sync</i>)<br />e.g. <code>@testcase=789</code>))</td>
                                 </tr>
                                 <tr>
                                     <td>@sharedstep</td>
-                                    <td>Mapped to <code>Shared-Step ID</code> in AzDevOps (used in case of <code>Background</code>; auto-populated post <i>sync</i>)</td>
+                                    <td>Mapped to <code>Shared-Step ID</code> in AzDevOps (used in case of <code>Background</code>; auto-populated post <i>sync</i>)<br />e.g. <code>@sharedstep=12</code>))</td>
                                 </tr>
                                 <tr>
                                     <td>@priority</td>
-                                    <td>Mapped to <code>Priority</code> field in AzDevOps</td>
+                                    <td>Mapped to <code>Priority</code> field in AzDevOps<br />e.g. <code>@priority=2</code></td>
                                 </tr>
                                 <tr>
                                     <td>@bvt</td>
@@ -338,15 +343,27 @@
                                 </tr>
                                 <tr>
                                     <td>@manual</td>
-                                    <td>Mapped to <code>Automation-Status</code> field in AzDevOps<br />e.g. <code>@manual=planned</code> or <code>@manual=not_automated</code> [same as empty/default <code>@manual</code>]) (<code>spaces</code> to be replaced with <code>-</code> [hyphen] in the <i>reason/value</i>)</td>
+                                    <td>Mapped to <code>Automation-Status</code> field in AzDevOps<br />e.g. <code>@manual=planned</code> or <code>@manual=not-automated</code> [same as empty/default <code>@manual</code>]) (<code>spaces</code> to be replaced with <code>-</code> [hyphen] in the <i>reason/value</i>)</td>
                                 </tr>
                                 <tr>
                                     <td>@owner</td>
-                                    <td>Mapped to <code>Assigned To</code> field in AzDevOps (overrides the <code>DefaultAssignedTo</code> value in <code>Spex.json</code>)</td>
+                                    <td>Mapped to <code>Assigned To</code> field in AzDevOps (overrides the <code>DefaultAssignedTo</code> value in <code>Spex.json</code>)<br />e.g. <code>@owner=someone@something.com</code></td>
                                 </tr>
                                 <tr>
                                     <td>@version</td>
-                                    <td>Identifies if the <code>Feature</code>/<code>Scenario</code> needs to be <i>re-synced</i> to AzDevOps (if the tag value is greater than the one in AzDevOps)</td>
+                                    <td>Identifies if the <code>Feature</code>/<code>Scenario</code> needs to be <i>re-synced</i> to AzDevOps (if the tag value is greater than the one in AzDevOps)<br />e.g. <code>@version=2</code></td>
+                                </tr>
+                                <tr>
+                                    <td>@attach</td>
+                                    <td>File-names/paths (comma-separated) that need to be <i>attached</i> to the Test-case in AzDevOps<br />e.g. <code>@attach=file1.txt,folder2/file2.json</code></td>
+                                </tr>
+                                <tr>
+                                    <td>@area</td>
+                                    <td>Mapped to <code>AreaPath</code> field in AzDevOps (overrides the default value specified in <code>Spex.json</code>)<br />e.g. <code>@area=My^Project\Some^Area</code></td>
+                                </tr>
+                                <tr>
+                                    <td>@iteration</td>
+                                    <td>Mapped to <code>IterationPath</code> field in AzDevOps (overrides the default value specified in <code>Spex.json</code>)<br />e.g. <code>@iteration=My^Project\Iteration^1</code></td>
                                 </tr>
                                 <tr>
                                     <td>@ignore</td>
