@@ -161,6 +161,12 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td>BaseUrl</td>
+                                    <td><code>string</code></td>
+                                    <td>[Optional] The base-url (with <code>https://</code> prefix) that can be changed for on-prem AzDO Server</td>
+                                    <td>https://dev.azure.com</td>
+                                </tr>
+                                <tr>
                                     <td>Account</td>
                                     <td><code>string</code></td>
                                     <td>Azure DevOps Org Account name (https://dev.azure.com/{org})</td>
@@ -294,6 +300,7 @@
                     </blockquote>
                     <ul>
                         <li>Enter <code>s</code> to sync SpecFlow Features to AzDevOps TestCases (with optional space-delimited suffixes)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-b</code> to build the test-project before running AzDevOps sync<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-r:false</code> to skip regenerating the doc-cache, say if the project-files haven't changed<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-d:true</code> to demo/dry-run AzDevOps sync<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-s:scenario-name-matches</code> comma-separated scenario-filters to override global setting/input<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>-f:feature-name-or-path-matches</code> comma-separated feature-filters to override global setting/input</li>
+                        <li>Enter <code>t</code> to transform existing AzDevOps (non-BDD) Test-cases to BDD format (auto-generates <code>.feature</code> files under <code>curr-dir\Spex\Features\</code> folder)</li>
                         <li>Enter <code>m</code> to generate AzDevOps TestCase-UserStory association matrix</li>
                         <li>Enter <code>r</code> to generate AzDevOps TestCases report</li>
                         <li>Enter <code>u</code> to auto-upgrade @version for updated Scenarios</li>
