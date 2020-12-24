@@ -90,6 +90,7 @@
                     <pre>
                     <code class="lang-json">
  {
+     // "BaseUrl": "https://dev.azure.com", // Update in case of on-prem
      "Account": "", // Org - e.g. 'abc' in https://dev.azure.com/abc
      "Project": "", // e.g. 'xyz' in https://dev.azure.com/abc/xyz
      "PersonalAccessToken": "", // PAT (optional)
@@ -126,6 +127,7 @@
             <pre>
                 <code class="lang-xml">
  &lt;Spex&gt;
+     &lt;!-- &lt;add key="BaseUrl" value="https://dev.azure.com" /&gt; --&gt;
      &lt;add key="Account" value="{org}" /&gt;
      &lt;add key="Project" value="{project}" /&gt;
      &lt;add key="PersonalAccessToken" value="{pat}" /&gt;
