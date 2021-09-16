@@ -48,6 +48,8 @@
                     </p>
                     <img src="https://github.com/vamsitp/spexdocs/blob/master/docs/assets/images/Sync.png?raw=true" class="shadow" width="240">
                     <br />
+                    <br />
+                    <blockquote>Can be used for other frameworks like Java/Cucumber too (as the Feature files syntax remains the same)</blockquote>
                     <hr />
                 </section>
                 <section class="js-section">
@@ -90,6 +92,7 @@
                     <pre>
                     <code class="lang-json">
  {
+     // "BaseUrl": "https://dev.azure.com", // Update in case of on-prem
      "Account": "", // Org - e.g. 'abc' in https://dev.azure.com/abc
      "Project": "", // e.g. 'xyz' in https://dev.azure.com/abc/xyz
      "PersonalAccessToken": "", // PAT (optional)
@@ -126,6 +129,7 @@
             <pre>
                 <code class="lang-xml">
  &lt;Spex&gt;
+     &lt;!-- &lt;add key="BaseUrl" value="https://dev.azure.com" /&gt; --&gt;
      &lt;add key="Account" value="{org}" /&gt;
      &lt;add key="Project" value="{project}" /&gt;
      &lt;add key="PersonalAccessToken" value="{pat}" /&gt;
